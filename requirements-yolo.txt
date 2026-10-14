@@ -1,0 +1,2 @@
+# Sadece YOLO modu (Adım 5) için. PyTorch'u da kurar (Windows'ta CPU sürümü).
+ultralytics>=8.4
