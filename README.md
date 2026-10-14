@@ -279,3 +279,10 @@ YOLO + eğik kamera testi (3 dakika, GPU/kamera/internet gerekmez): DLT 200 rast
 4. Gazebo + PX4 SITL
 
 Kural: algoritmalar kütüphanesiz, sıfırdan yazılıyor. Rota hesaplama klasik algoritmalarla; LLM en fazla üst seviye görev planlaması.
+
+
+
+## Çalışma kuralları
+- main'e doğrudan push yok; her değişiklik dal + PR ile girer.
+- Dal adı: ozellik/<kart>-<kisa-ad>
+- Commit: alan: ne yapıldı (#kart)
