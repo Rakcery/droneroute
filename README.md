@@ -290,3 +290,4 @@ Kural: algoritmalar kütüphanesiz, sıfırdan yazılıyor. Rota hesaplama klasi
 ## Ekip
 - Enes: Planlama ve algoritmalar
 - Yağmur: Algı ve yapay zekâ (YOLO)
+- Kerem: Simülasyon, ROS ve PX4
