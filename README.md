@@ -284,5 +284,5 @@ Kural: algoritmalar kütüphanesiz, sıfırdan yazılıyor. Rota hesaplama klasi
 
 ## Çalışma kuralları
 - main'e doğrudan push yok; her değişiklik dal + PR ile girer.
-- Dal adı: ozellik/<kart>-<kisa-ad>
-- Commit: alan: ne yapıldı (#kart)
+- Dal adı: `ozellik/<kart>-<kisa-ad>`
+- Commit: `alan: ne yapıldı (#kart)`
