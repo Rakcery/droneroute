@@ -291,3 +291,4 @@ Kural: algoritmalar kütüphanesiz, sıfırdan yazılıyor. Rota hesaplama klasi
 - Enes: Planlama ve algoritmalar
 - Yağmur: Algı ve yapay zekâ (YOLO)
 - Kerem: Simülasyon, ROS ve PX4
+- İdris (@Rakcery): Projenin kurucusu, rota planlama çekirdeği ve entegrasyon
