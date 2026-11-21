@@ -7,3 +7,5 @@ build/
 install/       
 log/           
 models/
+# Y-1: veri görüntüleri depoya girmez (Drive). Sadece veri/README.md ve veri/bolme.json depoda.
+veri/*/
