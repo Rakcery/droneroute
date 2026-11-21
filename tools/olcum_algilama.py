@@ -34,6 +34,9 @@ import drone_yolo as Y                       # YoloDetector, SimOracle ("kusursu
 import sahte_veri                            # sonuc_yaz: S-6 biçiminde CSV yazar
 
 YONTEMLER = ("renk", "kenar", "yolo", "hibrit")   # karşılaştırılan dört yöntem (ObstacleDetector.METHODS)
+# Rapordaki adlar: yolo ve hibrit burada gerçek modelle değil SimOracle ile ölçülüyor, adından belli olsun.
+# Gerçek model Y-2'de ölçülünce o satırlar düz "yolo" / "hibrit" adıyla gelecek.
+ETIKET = {"renk": "renk", "kenar": "kenar", "yolo": "yolo_oracle", "hibrit": "hibrit_oracle"}
 
 
 def dedektor_kur(yontem, sahne):
@@ -89,7 +92,7 @@ def main():
 
     def ekle(yontem, sahne, metrik, deger, birim):
         """S-6 başlığına uyan tek bir CSV satırı ekler."""
-        satirlar.append(dict(kart="Y-0", deney="algilama", yontem=yontem, sahne=sahne,
+        satirlar.append(dict(kart="Y-0", deney="algilama", yontem=ETIKET[yontem], sahne=sahne,
                              metrik=metrik, deger=round(deger, 4), birim=birim))
 
     for yontem in YONTEMLER:
@@ -102,7 +105,7 @@ def main():
             ekle(yontem, str(tohum), "sure", ms / n, "ms/kare")
             for i, v in enumerate((tp, fp, fn, ms, n)):
                 T[i] += v                    # toplama ekle
-            print(f"  {yontem:6s} sahne {tohum}: kesinlik={k:.3f} duyarlilik={d:.3f} {ms / n:.1f} ms/kare")
+            print(f"  {ETIKET[yontem]:13s} sahne {tohum}: kesinlik={k:.3f} duyarlilik={d:.3f} {ms / n:.1f} ms/kare")
         k, d = oranlar(T[0], T[1], T[2])     # bütün sahneler birlikte
         ms = T[3] / T[4]
         ekle(yontem, "hepsi", "kesinlik", k, "oran")
@@ -118,7 +121,7 @@ def main():
     print("| Yöntem | Kesinlik | Duyarlılık | ms/kare |")
     print("|---|---|---|---|")
     for yontem, (k, d, ms) in ozet.items():
-        print(f"| {yontem} | {k:.3f} | {d:.3f} | {ms:.1f} |")
+        print(f"| {ETIKET[yontem]} | {k:.3f} | {d:.3f} | {ms:.1f} |")
     print(f"\nCSV: {os.path.relpath(args.cikti, KOK)}")
     print("TAMAM")
 
