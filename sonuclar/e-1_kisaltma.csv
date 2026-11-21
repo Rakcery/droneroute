@@ -1,0 +1,5 @@
+kart,deney,yontem,sahne,metrik,deger,birim
+E-1,kisaltma,astar,300_rastgele,nokta_sayisi,39.53,adet
+E-1,kisaltma,astar+shortcut,300_rastgele,nokta_sayisi,6.94,adet
+E-1,kisaltma,astar,300_rastgele,uzunluk,40.931,hucre
+E-1,kisaltma,astar+shortcut,300_rastgele,uzunluk,39.272,hucre
