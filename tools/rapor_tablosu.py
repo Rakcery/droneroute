@@ -15,8 +15,12 @@ CIKTI = os.path.join(KOK, "docs", "olcumler.md")                       # yazıla
 
 # Her kartın altına yazılacak tek cümle. Sahibi onaylamadan "onay bekliyor" kalır.
 YORUMLAR = {
-    "Y-0": "(onay bekliyor: Yağmur)",
-    "E-1": "(onay bekliyor: Enes)",
+    "Y-0": ("6 sahnede klasik yöntemlerden renk algılama daha az yanlış alarm veriyor (kesinlik 0,98) "
+            "ama biraz daha fazla engel kaçırıyor (duyarlılık 0,96, kenarda 0,97). Kenar algılama ise "
+            "yaklaşık 4 kat daha hızlı (2,3 ms/kare). yolo_oracle ve hibrit_oracle satırları gerçek YOLO "
+            "modeli değil, simülasyondaki kusursuz dedektörle ölçüldü. Gerçek model Y-2'de ölçülecek. (onay: Yağmur)"),
+    "E-1": ("300 rastgele haritada görüş hattı kısaltması, drone'a verilen rota noktası sayısını ortalama "
+            "39,5'ten 6,9'a indirdi (%82 az), rota uzunluğu da %4 kısaldı (40,9 → 39,3 hücre). (onay: Enes)"),
 }
 
 
