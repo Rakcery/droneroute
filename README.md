@@ -1,6 +1,10 @@
 # DroneRoute Agent
 
+[![testler](https://github.com/Rakcery/droneroute/actions/workflows/testler.yml/badge.svg)](https://github.com/Rakcery/droneroute/actions/workflows/testler.yml)
+
 IEEE İSTÜN CS Komitesi 2026-27 · RAS ortak proje. Kamera verisinden engel algılayıp anlık güvenli rota hesaplayan drone / kara aracı ajanı.
+
+Güncel ölçüm sonuçları: [docs/olcumler.md](docs/olcumler.md) · Demo videosu: [v0.1 sürümü](https://github.com/Rakcery/droneroute/releases/tag/v0.1-baslangic)
 
 ## Kurulum
 
@@ -312,4 +316,4 @@ Kural: algoritmalar kütüphanesiz, sıfırdan yazılıyor. Rota hesaplama klasi
 - Enes: Planlama ve algoritmalar
 - Yağmur: Algı ve yapay zekâ (YOLO)
 - Kerem: Simülasyon, ROS ve PX4
-- İdris (@Rakcery): Projenin kurucusu, rota planlama çekirdeği ve entegrasyon
+- İdris (@Rakcery): Projenin kurucusu, rota planlama çekirdeği ve entegrasyon
