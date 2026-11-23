@@ -125,4 +125,5 @@ Kontrol ettikleri: her görüntünün etiketi var mı (ve tersi), satır biçimi
 ## Açık konular
 
 - Kerem'in Gazebo etiketleri geldiğinde (Hafta 8) karışım oranı Y-4'te belirlenecek.
+- **Tepeden (nadir) görüntü yok.** UAVid'in hepsi eğik açı; tepeden bina/ağaç örneği Semantic Drone'dan gelecekti. Bu açık Gazebo görüntüleri (Y-4) ve kendi çekimlerimizle (Y-5) kapatılacak (Lider, 23 Kasım).
 - **Direk / sokak lambası / tabela sınıfı yok.** Önizlemelerde fark edildi: UAVid bunları "clutter" sayıyor, bizim 6 sınıfımızda da karşılığı yok. Alçak uçuşta (5-10 m) gerçek çarpma riski. Öneri: S-5'e `6 direk` sınıfı (S-7 süreciyle, herkesin onayı). Veri UAVid'den çıkmaz; Gazebo (Y-4) ve kampüs çekimlerinden (Y-5) gelmeli.

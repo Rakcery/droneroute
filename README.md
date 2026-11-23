@@ -1,6 +1,10 @@
 # DroneRoute Agent
 
+[![testler](https://github.com/Rakcery/droneroute/actions/workflows/testler.yml/badge.svg)](https://github.com/Rakcery/droneroute/actions/workflows/testler.yml)
+
 IEEE İSTÜN CS Komitesi 2026-27 · RAS ortak proje. Kamera verisinden engel algılayıp anlık güvenli rota hesaplayan drone / kara aracı ajanı.
+
+Güncel ölçüm sonuçları: [docs/olcumler.md](docs/olcumler.md) · Demo videosu: [v0.1 sürümü](https://github.com/Rakcery/droneroute/releases/tag/v0.1-baslangic)
 
 ## Kurulum
 
@@ -270,6 +274,27 @@ python tests/test_yolo.py
 ```
 
 YOLO + eğik kamera testi (3 dakika, GPU/kamera/internet gerekmez): DLT 200 rastgele homografiyi buluyor ve kamera homografisi pinhole modeliyle birebir aynı; eğik kamerada ~450 nesnede engelin kameraya en yakın noktası tahmini tabanın içinde, boy hiç az tahmin edilmiyor, kuşun konumu doğru; kuşbakışı `yolo` ve `hibrit` modlarında algılama ≥0.9, sınıf boyları doğru, YOLO'nun kaçırdığı binayı hibrit yakalıyor; eğik kamerayla 2D ve 3D tam boru hattında çarpma 0 ve her karede D* = A*. `ultralytics` kurulu ve model hazırsa en sonda gerçek modeli de bir fotoğrafta dener, yoksa atlar. Sonda `TAMAM`.
+
+## Algılama yöntemleri karşılaştırması (Y-0)
+
+```bash
+python tools/olcum_algilama.py      # 6 sahne x 160 kare, sonuç: sonuclar/y-0_algilama.csv
+```
+
+Dört yöntem aynı 6 simülasyon sahnesinde, hücre bazında, zaman filtresinden sonra (güvenlik payı hariç) ölçüldü. Süre sadece algılama (maske + hücre + filtre).
+
+| Yöntem | Kesinlik | Duyarlılık | ms/kare |
+|---|---|---|---|
+| renk | 0.983 | 0.961 | 9.8 |
+| kenar | 0.934 | 0.968 | 2.3 |
+| yolo_oracle | 0.985 | 0.986 | 1.7 |
+| hibrit_oracle | 0.977 | 0.987 | 11.1 |
+
+**Not:** yolo ve hibrit gerçek modelle değil, SimOracle ("kusursuz YOLO") ile ölçüldü; bu satırlar boru hattının geri kalanının ne kadar doğru olduğunu gösteriyor. Gerçek modelin sayıları Y-2'de. Süreler ölçen bilgisayara göre değişir.
+
+- **renk:** yanlış alarmı az ama en çok kaçıran yöntem.
+- **kenar:** en hızlı ama en çok yanlış alarm veren.
+- **hibrit:** en az kaçıran; "kaçırmak yanlış alarmdan kötüdür" kuralına göre en güvenlisi, ama en yavaşı.
 
 ## Yol haritası
 

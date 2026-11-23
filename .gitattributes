@@ -1,0 +1,11 @@
+# Satır sonu ayarı: Windows (CRLF) ve Linux (LF) farkı yüzünden dosyanın her satırı
+# "değişmiş" görünmesin. Depoda hep LF saklanır, Windows'ta Git kendisi çevirir.
+* text=auto
+
+# Bunlar metin değil, dokunma
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.pdf binary
+*.pt binary
+*.ts binary
