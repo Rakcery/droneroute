@@ -3,8 +3,7 @@
 YOLO'yu kendi sınıflarımızla (özellikle **bina** ve **ağaç**, yukarıdan) eğitmek için toplanacak verinin planı.
 Biçim: Arayüz Sözleşmesi **S-5** (`docs/SOZLESME.md`). Kontrol: `python tools/veri_kontrol.py veri/`.
 
-> **Görüntüler depoya girmez.** Bu klasörde depoda sadece bu README, `bolme.json` ve kontrol aracı durur.
-> Görüntüler ve etiketler Drive'da: https://drive.google.com/drive/folders/1D8nIP8RB5fkKGMDiSUO8PlR-u863Q-li (ekip içi). `git status`'ta `.jpg`/`.png` görürsen ekleme.
+> Görüntüler ve etiketler ekibin Drive klasöründe (link ekip grubunda). `git status`'ta `.jpg`/`.png` görürsen ekleme.
 
 ## Sınıflar (S-5)
 
