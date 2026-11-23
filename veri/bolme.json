@@ -1,0 +1,35 @@
+{
+ "egitim": [
+  "uavid/seq1",
+  "uavid/seq2",
+  "uavid/seq3",
+  "uavid/seq4",
+  "uavid/seq5",
+  "uavid/seq6",
+  "uavid/seq7",
+  "uavid/seq8",
+  "uavid/seq9",
+  "uavid/seq10",
+  "uavid/seq11",
+  "uavid/seq12",
+  "uavid/seq13",
+  "uavid/seq14",
+  "uavid/seq15",
+  "uavid/seq31",
+  "uavid/seq32",
+  "uavid/seq33",
+  "uavid/seq34",
+  "uavid/seq35"
+ ],
+ "dogrulama": [
+  "uavid/seq16",
+  "uavid/seq18",
+  "uavid/seq20",
+  "uavid/seq37"
+ ],
+ "test": [
+  "uavid/seq17",
+  "uavid/seq19",
+  "uavid/seq36"
+ ]
+}

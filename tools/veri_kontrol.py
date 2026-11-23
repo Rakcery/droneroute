@@ -101,8 +101,8 @@ def sahneleri_bul(kok):
     out = []
     for kaynak in sorted(os.listdir(kok)):
         kaynak_yolu = os.path.join(kok, kaynak)
-        if not os.path.isdir(kaynak_yolu):
-            continue                         # README.md, bolme.json gibi dosyaları atla
+        if not os.path.isdir(kaynak_yolu) or kaynak.startswith("_"):
+            continue                         # README.md, bolme.json gibi dosyaları ve _ham/ (indirilen ham veri) klasörünü atla
         for sahne in sorted(os.listdir(kaynak_yolu)):
             if os.path.isdir(os.path.join(kaynak_yolu, sahne)):
                 out.append(f"{kaynak}/{sahne}")
