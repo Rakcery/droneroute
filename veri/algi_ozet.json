@@ -1,0 +1,7 @@
+{
+ "model": "kendi_y2",
+ "en_kucuk_nesne_px": 48,
+ "en_kucuk_nesne_m": 3.21,
+ "onerilen_pay_hucre": 1,
+ "not_": "UAVid test seti (eğik, ~50 m), araç + insan. en_kucuk_nesne_px: 4K resimde √alan; bundan küçüklerin yarısından azı bulunuyor (model resmi 1280'e küçültüyor, gözünde ~1/3'ü). Metre, aynı resimdeki araçlar 4.5 m sayılarak yaklaşık. Pay: bulunan nesnelerde kutu kenarı hatası %95'te 1.04 m (medyan 0.33 m), hücre 2.0 m. Bu boydan küçük, hiç bulunmayan nesneye pay işe yaramaz: alçak uçuşta (5-10 m) insan/direk için ayrıca kural gerekir."
+}
