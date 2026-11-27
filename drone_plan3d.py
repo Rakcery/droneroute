@@ -103,7 +103,6 @@ class GridPlanner3D:
             pen3 = np.where(band[None] & ~occ3, np.maximum(pen3, V.EDGE_PEN), pen3)
         if self.unseen is not None:                   # görüş alanı dışı: bilinmiyor, pahalı
             pen3 = np.where(self.unseen[None] & ~occ3, np.maximum(pen3, V.UNSEEN_PEN), pen3)
-  
         duvar, pahali = nofly_split(self.zones, self.drone, self.margin)   # içinde olduğun daire pahalı, gerisi duvar
         occ3 |= duvar[None]                               # bütün katmanlarda duvar (üstünden de geçilmez)
         pen3 = np.where(pahali[None] & ~occ3, np.maximum(pen3, NOFLY_PEN), pen3)   # içindeysen: pahalı, çık

@@ -1,7 +1,7 @@
 """drone_nofly.py: sanal yasak bölgeler (E-2, S-2). ROS'suz, saf Python."""
 import numpy as np                            # sayı tabloları
 from drone_dstar_lite import COLS, ROWS       # ızgara boyu: 40 sütun, 28 satır
-
+NOFLY_PEN = 50.0                              # drone bölgenin içindeyse o bölgenin hücre cezası (birimsiz çarpan)
 
 def nofly_mask(zones, margin=0):
     """zones: [((x, y), yarıçap), ...] -> 28x40 bool tablo, True = yasak hücre."""
@@ -10,8 +10,6 @@ def nofly_mask(zones, margin=0):
     for (cx, cy), r in zones:                 # her daire için
         mask |= (xx - cx) ** 2 + (yy - cy) ** 2 <= (r + margin) ** 2   # daireyi ekle
     return mask                               # True = yasak hücre
-
-NOFLY_PEN = 50.0                              # drone bölgenin içindeyse o bölgenin hücre cezası (birimsiz çarpan)
 
 def nofly_split(zones, drone, margin=0):
     """Drone'un içinde olduğu daireler pahalı, diğerleri duvar -> (duvar, pahali) tabloları."""

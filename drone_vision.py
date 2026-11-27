@@ -566,6 +566,7 @@ class GridPlanner:
 
     def _new_dstar(self):
         self.dstar = DStarLite(self.grid, self.drone, self.goal, self.penalty)
+        self.path = self.dstar.path()                     # ilk rota (D* kurulur kurulmaz)
 
     def set_goal(self, cell):
         self.goal = cell
