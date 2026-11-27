@@ -12,7 +12,7 @@ Nesne nesne analiz (IoU ≥ 0.5) **araç ve insan** için. Bina ve ağaç UAVid'
 | araç | 247 | 135 | 0.55 | 61 | 0.69 |
 | insan | 57 | 7 | 0.12 | 7 | 0.50 |
 
-Araç duyarlılığı nesne bazında 0.55, alan bazında 0.73 (Y-2): büyük araçlar bulunuyor, küçükler kaçıyor. Kesinlik gerçekte bundan yüksek (bkz. §4: "yanlış alarm"ların bir kısmı etiketlenmemiş gerçek araç).
+Araç duyarlılığı nesne bazında 0.55, alan bazında 0.73 (Y-2): büyük araçlar bulunuyor, küçükler kaçıyor. Kesinlik gerçekte bundan biraz yüksek (bkz. §4: "yanlış alarm"ların bir kısmı UAVid'in etiketlemediği gerçek araç).
 
 ## 2. Asıl etken: boy
 
@@ -57,19 +57,22 @@ Araç duyarlılığı nesne bazında 0.55, alan bazında 0.73 (Y-2): büyük ara
 | 07, 08, 10 | kaçırıldı | insan | 20-29 px, açık zeminde net görünen yürüyen insan | çok küçük |
 | 09, 12 | kaçırıldı | insan | şezlongda uzanmış insanlar | alışılmadık duruş |
 | 11 | kaçırıldı | insan | 17 px, motosiklet üstünde | çok küçük + başka nesneyle iç içe |
-| 13 | kaçırıldı | insan | 167 px kutu, içinde insan görünmüyor | etiket hatası (UAVid) |
-| 14, 16, 17, 18 | yanlış alarm | araç | minibüs, otomobil, arazi aracı: **gerçek araçlar**, UAVid etiketlememiş | etiketsiz gerçek nesne |
+| 13 | kaçırıldı | insan | 167 px kutu; maskede kutunun yalnız %7'si insan, gerisi araç + bitki | etiket / çeviri tuhaflığı (modelin hatası değil) |
+| 14, 16, 17 | yanlış alarm | araç | minibüs, otomobil: **gerçek araçlar**; UAVid maskesi bunları "clutter" boyamış | etiketsiz gerçek nesne |
+| 18 | yanlış alarm | araç | arazi aracı; maskede **araç olarak etiketli**, model buldu ama kutular %50 örtüşmedi | kutu uyuşmazlığı (aslında bulundu) |
 | 15 | yanlış alarm | araç | çatı penceresi | benzer görünüm |
 | 19 | yanlış alarm | araç | bahçe şemsiyesi / tente | benzer görünüm |
 | 20 | yanlış alarm | araç | motosiklet / üç teker kümesi | UAVid'de sınıfı yok (clutter) |
 | 21, 22, 24 | yanlış alarm | insan | yerde siyah-beyaz dikdörtgen nesne (bariyer / tabela tabanı) | benzer görünüm |
 | 23 | yanlış alarm | insan | çimde çim biçme makinesi / sandalye | benzer görünüm |
-| 25 | yanlış alarm | insan | **gerçek bir insan**, etiketsiz | etiketsiz gerçek nesne |
+| 25 | yanlış alarm | insan | maskede **insan olarak etiketli** (ince, 18x40 px); model buldu, kutu kaydı | kutu uyuşmazlığı (aslında bulundu) |
 | 26, 27 | yanlış alarm | insan | çöp kutuları (yukarıdan insan gibi) | benzer görünüm |
 
-Gruplanmış: **kaçırılanlar** (14): çok küçük/uzak 9, alışılmadık duruş 2, gölge 1, kısmen görünür 1, etiket hatası 1. **Yanlış alarmlar** (14): benzer görünüm 8, etiketsiz gerçek nesne 5, sınıfı olmayan nesne (motosiklet) 1.
+Gruplanmış: **kaçırılanlar** (14): çok küçük/uzak 9, alışılmadık duruş 2, gölge 1, kısmen görünür 1, etiket/çeviri tuhaflığı 1. **Yanlış alarmlar** (14): benzer görünüm 8, etiketsiz gerçek nesne 3, kutu uyuşmazlığı (aslında bulundu) 2, sınıfı olmayan nesne (motosiklet) 1.
 
-Yani yanlış alarmların bir kısmı aslında doğru; ölçtüğümüz kesinlik gerçeğinden düşük. Planlama açısından "benzer görünüm" yanlış alarmları zararsız (drone gereksiz dolaşır), ama altın kuralımıza göre asıl sorun küçük nesneleri kaçırmak.
+**Doğrulama:** 9, 12, 13, 14, 16, 17, 18, 25 numaralı örnekler UAVid'in orijinal renkli etiket maskesiyle karşılaştırıldı. İlk gözlemde 18 ve 25 "etiketsiz gerçek nesne" sanılmıştı; maskeye göre ikisi de etiketli, sorun kutu örtüşmesi. Eşik 0.5 yerine 0.3 alınınca duyarlılık araçta 0.55 → 0.57, insanda 0.12 → 0.14 oluyor: bu tür durumlar az, ana sonuç (boy) değişmiyor.
+
+Yani yanlış alarmların bir kısmı aslında doğru (etiketsiz gerçek araç ya da kutusu kaymış doğru tespit); ölçtüğümüz kesinlik gerçeğinden biraz düşük. Planlama açısından "benzer görünüm" yanlış alarmları zararsız (drone gereksiz dolaşır), ama altın kuralımıza göre asıl sorun küçük nesneleri kaçırmak.
 
 ## 5. Enes'e özet (`veri/algi_ozet.json`)
 
