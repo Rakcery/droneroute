@@ -1,0 +1,16 @@
+kart,deney,yontem,sahne,metrik,deger,birim
+E-4,takip,pure_pursuit_la1.0,100_rastgele,max_sapma,0.1801,m
+E-4,takip,pure_pursuit_la1.0,100_rastgele,ort_sapma,0.0169,m
+E-4,takip,pure_pursuit_la1.0,100_rastgele,carpma,0,adim
+E-4,takip,pure_pursuit_la1.0,100_rastgele,ucus_suresi,10.8685,s
+E-4,takip,pure_pursuit_la1.0,100_rastgele,cagri_suresi,0.0659,ms
+E-4,takip,pure_pursuit_la2.0,100_rastgele,max_sapma,0.2705,m
+E-4,takip,pure_pursuit_la2.0,100_rastgele,ort_sapma,0.0552,m
+E-4,takip,pure_pursuit_la2.0,100_rastgele,carpma,0,adim
+E-4,takip,pure_pursuit_la2.0,100_rastgele,ucus_suresi,10.7255,s
+E-4,takip,pure_pursuit_la2.0,100_rastgele,cagri_suresi,0.1466,ms
+E-4,takip,pure_pursuit_la3.0,100_rastgele,max_sapma,0.5774,m
+E-4,takip,pure_pursuit_la3.0,100_rastgele,ort_sapma,0.1208,m
+E-4,takip,pure_pursuit_la3.0,100_rastgele,carpma,4,adim
+E-4,takip,pure_pursuit_la3.0,100_rastgele,ucus_suresi,10.5,s
+E-4,takip,pure_pursuit_la3.0,100_rastgele,cagri_suresi,0.145,ms
