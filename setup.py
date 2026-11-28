@@ -12,7 +12,7 @@ setup(
     name=PKG,
     version="0.4.0",
     packages=["droneroute_ros"],
-    py_modules=["drone_dstar_lite", "drone_dstar3d", "drone_plan3d", "drone_vision", "drone_tracker", "drone_yolo"],
+    py_modules=["drone_dstar_lite", "drone_dstar3d", "drone_plan3d", "drone_vision", "drone_tracker", "drone_yolo", "drone_smooth", "drone_nofly"],
     data_files=[
         ("share/ament_index/resource_index/packages", [f"resource/{PKG}"]),
         (f"share/{PKG}", ["package.xml"]),
