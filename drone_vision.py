@@ -58,6 +58,7 @@ import numpy as np
 import drone_dstar_lite as dl
 import drone_tracker as tracking
 from drone_dstar_lite import COLS, ROWS, DStarLite, path_cost
+from drone_nofly import NOFLY_PEN, nofly_split        # E-2: yasak daireler -> duvar / pahalı tablolar
 
 # ---------------- Ayarlar ----------------
 CELL_PX = 22                       # ekranda bir hücre kaç piksel
@@ -556,11 +557,16 @@ class GridPlanner:
                           dodges=0)
         self.status = "Hazir"
         self.unseen = None                                # eğik kamera: kameranın görmediği hücreler
+        self.zones = []                                   # E-2: yasak daireler [((x, y), yarıçap), ...]
         self._new_dstar()
+
+    def set_nofly(self, zones):
+        """E-2 (S-2): yasak daireler (hücre). Bir sonraki update'te uygulanır."""
+        self.zones = list(zones)                          # bölgeleri sakla (kopyasını al)
 
     def _new_dstar(self):
         self.dstar = DStarLite(self.grid, self.drone, self.goal, self.penalty)
-        self.path = self.dstar.path()
+        self.path = self.dstar.path()                     # ilk rota (D* kurulur kurulmaz)
 
     def set_goal(self, cell):
         self.goal = cell
@@ -590,6 +596,10 @@ class GridPlanner:
             pen = np.where(band & ~occ, np.maximum(pen, EDGE_PEN), pen)
         if self.unseen is not None:                         # tahmin kapalı olsa da: görmediğin yerden kaçın
             pen = np.where(self.unseen & ~occ, np.maximum(pen, UNSEEN_PEN), pen)
+        # E-2: yasak bölge bir planlama kararı; algının tablosuna (raw) değil buraya duvar olarak eklenir
+        duvar, pahali = nofly_split(self.zones, self.drone, self.margin)   # içinde olduğun daire pahalı, gerisi duvar
+        occ |= duvar                                          # yasak daireler (pay dahil) duvar olsun
+        pen = np.where(pahali & ~occ, np.maximum(pen, NOFLY_PEN), pen)    # içindeysen: pahalı, en kısa yoldan çık
         # Drone'un kendi hücresini boş tut: pay yüzünden drone "engelin içinde" kalıp kilitlenmesin,
         # kaçabileceği bir yer olsun. (Gerçekten engel içindeyse aşağıda uyarı basıyoruz.)
         dx, dy = self.drone

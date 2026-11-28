@@ -23,6 +23,7 @@ import numpy as np
 import drone_tracker as tracking
 import drone_vision as V
 from drone_dstar_lite import COLS, ROWS
+from drone_nofly import NOFLY_PEN, nofly_split        # E-2: yasak daireler -> duvar / pahalı tablolar
 from drone_dstar3d import ALTS, CLEARANCE, NZ, DStarLite3D, path_cost3
 
 LEVEL_ALT = np.array(ALTS, float)[:, None, None]     # (NZ, 1, 1) yayın için
@@ -47,7 +48,12 @@ class GridPlanner3D:
                           climbs=0, high_steps=0)
         self.status = "Hazir"
         self.unseen = None
+        self.zones = []                                   # E-2: yasak daireler [((x, y), yarıçap), ...]
         self._new_dstar()
+
+    def set_nofly(self, zones):
+        """E-2 (S-2): yasak daireler (hücre), bütün irtifalarda geçerli. Bir sonraki update'te uygulanır."""
+        self.zones = list(zones)                          # bölgeleri sakla (kopyasını al)
 
     # 2D kodla (random_free_cell, çizim) uyum: en alçak katmanın görünümü
     @property
@@ -97,6 +103,10 @@ class GridPlanner3D:
             pen3 = np.where(band[None] & ~occ3, np.maximum(pen3, V.EDGE_PEN), pen3)
         if self.unseen is not None:                   # görüş alanı dışı: bilinmiyor, pahalı
             pen3 = np.where(self.unseen[None] & ~occ3, np.maximum(pen3, V.UNSEEN_PEN), pen3)
+        duvar, pahali = nofly_split(self.zones, self.drone, self.margin)   # içinde olduğun daire pahalı, gerisi duvar
+        occ3 |= duvar[None]                               # bütün katmanlarda duvar (üstünden de geçilmez)
+        pen3 = np.where(pahali[None] & ~occ3, np.maximum(pen3, NOFLY_PEN), pen3)   # içindeysen: pahalı, çık
+
         dx, dy = self.drone
         occ3[self.z, dy, dx] = False                  # drone'un düğümü boş kalsın (2D'deki gibi)
         pen3[self.z, dy, dx] = 0.0

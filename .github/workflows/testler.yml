@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test: [test_dstar_vs_astar, test_vision, test_moving, test_ros_split, test_3d, test_yolo, test_smooth]
+        test: [test_dstar_vs_astar, test_vision, test_moving, test_ros_split, test_3d, test_yolo, test_smooth, test_nofly]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
